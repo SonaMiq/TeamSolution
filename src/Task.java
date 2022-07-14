@@ -7,12 +7,22 @@ public class Task {
         Map<Integer, Integer> map = new HashMap<>(10);
 
         for (int i = 0; i < 10; i++) {
-            int sum = (k - 1) * (int) Math.pow(10, k - 2);
-            for (int num = (int) Math.pow(10, k - 1); num <= number; num++) {
-                sum += occurCount(num, i);
+            int sum=1;
+            if (i == 0) {
+                for (int j = 0; j < k-1; j++) {
+                    sum+=j*9*(int)Math.pow(10,j-1);
+                }
             }
-            map.put(i, sum);
-        }
+
+            else {
+                sum = (k - 1) * (int) Math.pow(10, k - 2);
+            }
+                for (int num = (int) Math.pow(10, k - 1); num <= number; num++) {
+                    sum += occurCount(num, i);
+                }
+                map.put(i, sum);
+            }
+
 
         return map;
     }
@@ -22,7 +32,7 @@ public class Task {
         while (number != 0) {
             if (number % 10 == digit)
                 cout++;
-            number=number/10;
+            number = number / 10;
         }
         return cout;
     }
@@ -38,7 +48,7 @@ public class Task {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Task().fn(38));
+        System.out.println(new Task().fn(123456789));
     }
 
 }
