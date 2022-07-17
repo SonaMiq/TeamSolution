@@ -32,7 +32,7 @@ public class Taskkk {
         int k = digitCounts(number);
         if (k <=1) {
             if(i<=number)
-            return 1;
+                return 1;
             return 0;
         }
 
@@ -64,7 +64,7 @@ public class Taskkk {
             int first = arr[0];
             if (k != this.k)
                 first++;
-            return first * f(number % (int) Math.pow(10, k - 1), i);
+            return first*f(number % (int) Math.pow(10, k - 1),i);
         }
 
         return 0;
