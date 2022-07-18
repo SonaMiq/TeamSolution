@@ -22,8 +22,10 @@ public class Taskkk {
             // from 7891 from 1000 to 6999
             int first=number/(int)Math.pow(10,k-1);
             if(first-1!=0) {
-                sum += (k - 1) * (number / (int) Math.pow(10, k - 1) - 1) * (int) Math.pow(10, k - 2) +
-                        (int) Math.pow(10, k - 1);
+                sum += (k - 1) * (number / (int) Math.pow(10, k - 1) - 1) * (int) Math.pow(10, k - 2);
+            }
+            if(i!=0&&i<first){
+               sum+=(int) Math.pow(10, k - 1);
             }
            // to count only for 7000-7891
             sum += f(number, i);
@@ -69,6 +71,6 @@ public class Taskkk {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Taskkk().fn(12345));
+        System.out.println(new Taskkk().fn(7261));
     }
 }
