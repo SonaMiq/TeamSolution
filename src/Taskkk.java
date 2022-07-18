@@ -33,7 +33,7 @@ public class Taskkk {
         if (k == 1)
         {
             if(i<=number)
-                return i+1;
+                return 1;
             return 0;
 
         }
@@ -59,11 +59,7 @@ public class Taskkk {
             int first=arr[0];
             if(k!=this.k)
                 first++;
-            int mult=1;
-            for (int j = 1; j <k ; j++) {
-                mult*=arr[j];
-            }
-            return mult+first*f(number % (int) Math.pow(10, k - 1), i);
+            return (number/(int) Math.pow(10, k - 1)-1)*(int) Math.pow(10, k - 1)+f(number % (int) Math.pow(10, k - 1),i)+first*f(number % (int) Math.pow(10, k - 1), i);
         }
         if (i > arr[0]) {
             int first=arr[0];
