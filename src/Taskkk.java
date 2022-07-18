@@ -69,6 +69,6 @@ public class Taskkk {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Taskkk().fn(123456));
+        System.out.println(new Taskkk().fn(12345));
     }
 }
