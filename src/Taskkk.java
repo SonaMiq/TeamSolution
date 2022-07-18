@@ -9,7 +9,7 @@ public class Taskkk {
         Map<Integer, Integer> map = new HashMap<>(10);
 
         for (int i = 0; i < 10; i++) {
-
+         // from 7891 first count from 0 to 999
             int sum = 1;
             if (i == 0) {
                 for (int j = 0; j < k - 1; j++) {
@@ -19,6 +19,13 @@ public class Taskkk {
                 sum = (k - 1) * (int) Math.pow(10, k - 2);
             }
 
+            // from 7891 from 1000 to 6999
+            int first=number/(int)Math.pow(10,k-1);
+            if(first-1!=0) {
+                sum += (k - 1) * (number / (int) Math.pow(10, k - 1) - 1) * (int) Math.pow(10, k - 2) +
+                        (int) Math.pow(10, k - 1);
+            }
+           // to count only for 7000-7891
             sum += f(number, i);
 
             map.put(i, sum);
@@ -29,47 +36,24 @@ public class Taskkk {
     }
 
     int f(int number, int i) {
-        int k = digitCounts(number);
-        if (k == 1)
-        {
-            if(i<=number)
-                return 1;
-            return 0;
 
+       int k=digitCounts(number);
+       int count=0;
+        for (int j = number/(int) Math.pow(10,k-1)*(int) Math.pow(10,k-1); j <=number; j++) {
+             count+=occurCount(j,i);
         }
+          return count;
+       }
 
-        int[] arr = new int[k];
-        int m = number;
-        for (int j = k - 1; j >= 0; j--) {
-            arr[j] = m % 10;
-            m = m / 10;
+    int occurCount(int number,int i){
+        int count=0;
+        while (number!=0){
+            if(number%10==i) {
+                count++;
+            }
+            number=number/10;
         }
-        if (i < arr[0] || i == 0) {
-            int first = arr[0];
-            if (k == this.k) {
-                if (i == 0) {
-                    return first*f(number % (int) Math.pow(10, k - 2), i);
-                }
-
-            } else first++;
-            return  (int) Math.pow(10, k - 1)+ first*f(number % (int) Math.pow(10, k - 1), i);
-        }
-        if (i == arr[0]) {
-
-            int first=arr[0];
-            if(k!=this.k)
-                first++;
-            return (number/(int) Math.pow(10, k - 1)-1)*(int) Math.pow(10, k - 1)+f(number % (int) Math.pow(10, k - 1),i)+first*f(number % (int) Math.pow(10, k - 1), i);
-        }
-        if (i > arr[0]) {
-            int first=arr[0];
-            if(k!=this.k)
-                first++;
-            return first*f(number % (int) Math.pow(10, k - 1), i);
-        }
-
-        return 0;
-
+        return count;
     }
 
 
@@ -85,6 +69,6 @@ public class Taskkk {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Taskkk().fn(125));
+        System.out.println(new Taskkk().fn(123456));
     }
 }
