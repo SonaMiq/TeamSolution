@@ -30,12 +30,13 @@ public class Taskkk {
 
     int f(int number, int i) {
         int k = digitCounts(number);
-        if (k <=1) {
+        if (k == 1)
+        {
             if(i<=number)
-                return 1;
+                return i+1;
             return 0;
-        }
 
+        }
 
         int[] arr = new int[k];
         int m = number;
@@ -47,29 +48,35 @@ public class Taskkk {
             int first = arr[0];
             if (k == this.k) {
                 if (i == 0) {
-                    return f(number % (int) Math.pow(10, k - 1), i);
+                    return first*f(number % (int) Math.pow(10, k - 2), i);
                 }
 
             } else first++;
-
-            return (int) Math.pow(10, k - 1) + first * f(number % (int) Math.pow(10, k - 1), i);
+            return  (int) Math.pow(10, k - 1)+ first*f(number % (int) Math.pow(10, k - 1), i);
         }
         if (i == arr[0]) {
-            int first = arr[0];
-            if (k != this.k)
+
+            int first=arr[0];
+            if(k!=this.k)
                 first++;
-          return  arr[1]*(int) Math.pow(10, k - 2)+f(number % (int) Math.pow(10, k - 2),i)+ first * f(number % (int) Math.pow(10, k - 1), i);
+            int mult=1;
+            for (int j = 1; j <k ; j++) {
+                mult*=arr[j];
+            }
+            return mult+first*f(number % (int) Math.pow(10, k - 1), i);
         }
         if (i > arr[0]) {
-            int first = arr[0];
-            if (k != this.k)
+            int first=arr[0];
+            if(k!=this.k)
                 first++;
-            return first*f(number % (int) Math.pow(10, k - 1),i);
+            return first*f(number % (int) Math.pow(10, k - 1), i);
         }
 
         return 0;
 
     }
+
+
 
     int digitCounts(int number) {
         int d = 0;
@@ -80,7 +87,6 @@ public class Taskkk {
         }
         return d;
     }
-
 
     public static void main(String[] args) {
         System.out.println(new Taskkk().fn(125));
